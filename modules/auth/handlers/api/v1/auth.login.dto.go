@@ -8,6 +8,11 @@ import (
 	"svc-user-management/lib/common"
 )
 
+type BasicAuth struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
 type Credential struct {
 	PhoneNo  string `json:"phone_no"`
 	Password string `json:"password"`

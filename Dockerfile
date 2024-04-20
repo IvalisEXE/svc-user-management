@@ -7,7 +7,7 @@ FROM golang:1.19-alpine as builder
 COPY . .
 
 # Build our binary at root location.
-RUN GOPATH= go build -o /main cmd/main.go
+RUN GOPATH= go build -o /main main.go
 
 ####################################################################
 # This is the actual image that we will be using in production.

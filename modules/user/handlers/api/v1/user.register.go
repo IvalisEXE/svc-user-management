@@ -8,6 +8,18 @@ import (
 	"svc-user-management/lib/response"
 )
 
+// RegisterUser
+// @Summary Register user
+// @Description Register userRegister user
+// @Tags User Management
+// @Accept  json
+// @Produce  json
+// @Param request body UserRegisterBodyReq true "Register User Payload"
+// @Success 201 {object} UserRegisterBodyRes
+// @Failure 400 {object} string "result"
+// @Failure 422 {object} string "result"
+// @Failure 500 {object} string "result"
+// @Router /api/v1/user [post]
 func (h *Handler) RegisterUser(c echo.Context) error {
 	/* init tracer */
 

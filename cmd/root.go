@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"os"
@@ -8,6 +8,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	echoSwagger "github.com/swaggo/echo-swagger"
 	"go.elastic.co/apm/module/apmechov4"
 
 	"svc-user-management/init/assembler"
@@ -16,7 +17,7 @@ import (
 	api_user "svc-user-management/modules/user/handlers/api"
 )
 
-func main() {
+func Execute() {
 	cwd, _ := os.Getwd()
 	dirString := strings.Split(cwd, "svc-user-management")
 	dir := strings.Join([]string{dirString[0], "svc-user-management"}, "")
@@ -36,6 +37,8 @@ func main() {
 			echo.HeaderAuthorization,
 		},
 	}))
+
+	e.GET("/swagger/*", echoSwagger.WrapHandler)
 
 	assembler := assembler.NewAssembler()
 	assembler.BuildService()

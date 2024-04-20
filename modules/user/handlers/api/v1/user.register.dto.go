@@ -15,7 +15,7 @@ import (
 type UserRegisterBodyReq struct {
 	PhoneNo  string `json:"phone_no"`
 	FullName string `json:"fullname"`
-	Password string `json:"passwordd"`
+	Password string `json:"password"`
 }
 
 func (ur *UserRegisterBodyReq) ParseToRegisterUserEntity() models.User {

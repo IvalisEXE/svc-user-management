@@ -8,6 +8,16 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+// GetProfileUser
+// @Summary Get profile user
+// @Description GetProfileUser getProfileUser user
+// @Tags User Management
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} UserProfileBodyRes
+// @Failure 403 {object} string "result"
+// @Failure 500 {object} string "result"
+// @Router /api/v1/user [get]
 func (h *Handler) GetProfileUser(c echo.Context) error {
 	ctx := c.Request().Context()
 	userID := c.Get("user_id").(string)
@@ -34,13 +44,24 @@ func (h *Handler) GetProfileUser(c echo.Context) error {
 	return c.JSON(
 		http.StatusOK,
 		response.NewSuccessResponseStatusOK(
-			response.StatusCodeCreated,
+			response.StatusCodeSuccess,
 			"get user successfully...",
 			userProfile,
 		),
 	)
 }
 
+// UpdateProfileUser
+// @Summary Update profile user
+// @Description UpdateProfileUser updateProfileUser user
+// @Tags User Management
+// @Accept  json
+// @Produce  json
+// @Param request body UpdateUserProfileBodyReq true "Update Profile User Payload"
+// @Success 200 {object} UserProfileBodyRes
+// @Failure 403 {object} string "result"
+// @Failure 500 {object} string "result"
+// @Router /api/v1/user [put]
 func (h *Handler) UpdateProfileUser(c echo.Context) error {
 	ctx := c.Request().Context()
 

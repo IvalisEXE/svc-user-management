@@ -10,6 +10,19 @@ import (
 	"svc-user-management/lib/response"
 )
 
+// Login
+// @Summary Login user
+// @Description Login login user
+// @Tags User Management
+// @Accept  json
+// @Produce  json
+// @Security BasicAuth
+// @Success 200 {object} LoginBodyRes
+// @Failure 400 {object} string "result"
+// @Failure 401 {object} string "result"
+// @Failure 422 {object} string "result"
+// @Failure 500 {object} string "result"
+// @Router /api/v1/auth/login [post]
 func (h *Handler) Login(c echo.Context) error {
 	ctx := c.Request().Context()
 

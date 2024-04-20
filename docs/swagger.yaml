@@ -1,0 +1,185 @@
+basePath: /
+definitions:
+  v1.LoginBodyRes:
+    properties:
+      token:
+        type: string
+      user:
+        $ref: '#/definitions/v1.LoginBodyUserRes'
+    type: object
+  v1.LoginBodyUserRes:
+    properties:
+      user_id:
+        type: string
+    type: object
+  v1.UpdateUserProfileBodyReq:
+    properties:
+      fullname:
+        type: string
+      phone_no:
+        type: string
+    type: object
+  v1.UserProfileBodyRes:
+    properties:
+      user:
+        $ref: '#/definitions/v1.UserProfileUserBodyRes'
+    type: object
+  v1.UserProfileUserBodyRes:
+    properties:
+      fullname:
+        type: string
+      phone_no:
+        type: string
+    type: object
+  v1.UserRegisterBodyReq:
+    properties:
+      fullname:
+        type: string
+      password:
+        type: string
+      phone_no:
+        type: string
+    type: object
+  v1.UserRegisterBodyRes:
+    properties:
+      user:
+        $ref: '#/definitions/v1.UserRegisterUserBodyRes'
+    type: object
+  v1.UserRegisterUserBodyRes:
+    properties:
+      user_id:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Simple User Management Service
+  title: User Management - API
+  version: "1.0"
+paths:
+  /api/v1/auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Login login user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/v1.LoginBodyRes'
+        "400":
+          description: result
+          schema:
+            type: string
+        "401":
+          description: result
+          schema:
+            type: string
+        "422":
+          description: result
+          schema:
+            type: string
+        "500":
+          description: result
+          schema:
+            type: string
+      security:
+      - BasicAuth: []
+      summary: Login user
+      tags:
+      - User Management
+  /api/v1/user:
+    get:
+      consumes:
+      - application/json
+      description: GetProfileUser getProfileUser user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/v1.UserProfileBodyRes'
+        "403":
+          description: result
+          schema:
+            type: string
+        "500":
+          description: result
+          schema:
+            type: string
+      summary: Get profile user
+      tags:
+      - User Management
+    post:
+      consumes:
+      - application/json
+      description: Register userRegister user
+      parameters:
+      - description: Register User Payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/v1.UserRegisterBodyReq'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/v1.UserRegisterBodyRes'
+        "400":
+          description: result
+          schema:
+            type: string
+        "422":
+          description: result
+          schema:
+            type: string
+        "500":
+          description: result
+          schema:
+            type: string
+      summary: Register user
+      tags:
+      - User Management
+    put:
+      consumes:
+      - application/json
+      description: UpdateProfileUser updateProfileUser user
+      parameters:
+      - description: Update Profile User Payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/v1.UpdateUserProfileBodyReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/v1.UserProfileBodyRes'
+        "403":
+          description: result
+          schema:
+            type: string
+        "500":
+          description: result
+          schema:
+            type: string
+      summary: Update profile user
+      tags:
+      - User Management
+securityDefinitions:
+  BasicAuth:
+    type: basic
+  XForwardedForAuth:
+    in: header
+    name: X-Forwarded-For
+    type: apiKey
+swagger: "2.0"
