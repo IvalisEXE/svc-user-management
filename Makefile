@@ -32,3 +32,49 @@ generate_mocks: $(INTERFACES_GEN_GO_FILES)
 $(INTERFACES_GEN_GO_FILES): %.mock.gen.go: %.go
 	@echo "Generating mocks $@ for $<"
 	mockgen -source=$< -destination=$@ -package=$(shell basename $(dir $<))
+
+
+
+swag: 
+	@echo "Generate swagger..."
+	swag init 
+
+go-module: 
+	go mod tidy
+	go mod vendor
+
+docker-up: 
+	@echo "Dockerize up..."
+	docker-compose up 
+
+docker-down: 
+	@echo "Dockerize down..."
+	docker-compose down --volumes
+
+MOCK_USECASES=mockery --output ../../../mocks/usecases/ --all
+MOCK_REPOSITORIES=mockery --output ../../../mocks/repositories/ --all
+MOCK_INFRASTRUCTURE=mockery --output ../../mocks/infrastructure/ --all
+
+mock: 
+	cd modules/auth/usecases; \
+	$(MOCK_USECASES)
+
+	cd modules/auth/repositories; \
+	$(MOCK_REPOSITORIES)
+
+	cd modules/user/usecases; \
+	$(MOCK_USECASES)
+
+	cd modules/user/repositories; \
+	$(MOCK_REPOSITORIES)
+
+	cd infrastructure/databases; \
+	$(MOCK_INFRASTRUCTURE)
+
+	cd infrastructure/generator; \
+	$(MOCK_INFRASTRUCTURE)
+
+	cd infrastructure/jwt; \
+	$(MOCK_INFRASTRUCTURE)
+
+
