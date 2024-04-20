@@ -110,6 +110,8 @@ paths:
           description: result
           schema:
             type: string
+      security:
+      - Authorization: []
       summary: Get profile user
       tags:
       - User Management
@@ -172,10 +174,16 @@ paths:
           description: result
           schema:
             type: string
+      security:
+      - Authorization: []
       summary: Update profile user
       tags:
       - User Management
 securityDefinitions:
+  Authorization:
+    in: header
+    name: Authorization
+    type: apiKey
   BasicAuth:
     type: basic
   XForwardedForAuth:

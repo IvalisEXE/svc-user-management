@@ -14,6 +14,10 @@ import (
 
 // @securityDefinitions.basic  BasicAuth
 
+// @securityDefinitions.apikey Authorization
+// @in header
+// @name Authorization
+
 // @securityDefinitions.apikey XForwardedForAuth
 // @in header
 // @name X-Forwarded-For

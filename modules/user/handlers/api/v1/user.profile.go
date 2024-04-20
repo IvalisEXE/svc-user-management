@@ -14,6 +14,7 @@ import (
 // @Tags User Management
 // @Accept  json
 // @Produce  json
+// @Security Authorization
 // @Success 200 {object} UserProfileBodyRes
 // @Failure 403 {object} string "result"
 // @Failure 500 {object} string "result"
@@ -57,6 +58,7 @@ func (h *Handler) GetProfileUser(c echo.Context) error {
 // @Tags User Management
 // @Accept  json
 // @Produce  json
+// @Security Authorization
 // @Param request body UpdateUserProfileBodyReq true "Update Profile User Payload"
 // @Success 200 {object} UserProfileBodyRes
 // @Failure 403 {object} string "result"

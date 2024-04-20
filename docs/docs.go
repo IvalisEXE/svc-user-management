@@ -70,6 +70,11 @@ const docTemplate = `{
         },
         "/api/v1/user": {
             "get": {
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
                 "description": "GetProfileUser getProfileUser user",
                 "consumes": [
                     "application/json"
@@ -103,6 +108,11 @@ const docTemplate = `{
                 }
             },
             "put": {
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
                 "description": "UpdateProfileUser updateProfileUser user",
                 "consumes": [
                     "application/json"
@@ -280,6 +290,11 @@ const docTemplate = `{
         }
     },
     "securityDefinitions": {
+        "Authorization": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        },
         "BasicAuth": {
             "type": "basic"
         },

@@ -63,6 +63,11 @@
         },
         "/api/v1/user": {
             "get": {
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
                 "description": "GetProfileUser getProfileUser user",
                 "consumes": [
                     "application/json"
@@ -96,6 +101,11 @@
                 }
             },
             "put": {
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
                 "description": "UpdateProfileUser updateProfileUser user",
                 "consumes": [
                     "application/json"
@@ -273,6 +283,11 @@
         }
     },
     "securityDefinitions": {
+        "Authorization": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        },
         "BasicAuth": {
             "type": "basic"
         },
